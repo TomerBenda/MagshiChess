@@ -62,3 +62,8 @@ std::string Board::getMatrixStr() const
 {
 	return _matrixStr;
 }
+
+char Board::getPiece(const Position& pos) const
+{
+	return _matrixStr[pos.translate()];
+}

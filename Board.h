@@ -17,6 +17,7 @@ public:
 	void move(const Position& src, const Position& dst);
 	void createPieces();
 	std::string getMatrixStr() const;
+	char getPiece(const Position& pos) const;
 
 private:
 	std::vector<Piece*> _pieces;

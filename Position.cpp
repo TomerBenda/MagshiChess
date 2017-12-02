@@ -4,7 +4,7 @@
 Position::Position(char letter, int number)
 {
 	if ('a' > letter || 'h' <= letter || number > 8 || number <= 0)
-		throw std::invalid_argument("Nope!");
+		throw std::invalid_argument("Error: Position index out of range");
 
 		_letter = letter;
 		_number = number - 1;
@@ -18,7 +18,7 @@ Position::~Position()
 {
 }
 
-int Position::translate()
+int Position::translate() const
 {
 	return (_letter - 'a') * SIDE_LEN + _number;
 }
@@ -29,9 +29,9 @@ Position& Position::operator=(const Position& other)
 
 	return *this;
 }
-bool Position::operator==(const Position& other)
+bool Position::operator==(const Position& other) const
 {
-	return _letter = other._letter && _number == other._number;
+	return translate() == other.translate();
 }
 
 char Position::getLetter() const

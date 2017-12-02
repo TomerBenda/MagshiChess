@@ -1,6 +1,7 @@
 #include "Pipe.h"
 #include <iostream>
 #include <thread>
+#include "gameManager.h"
 
 using namespace std;
 void main()
@@ -40,16 +41,19 @@ void main()
 
 	p.sendMessageToGraphics(msgToGraphics);   // send the board string
 
-											  // get message from graphics
+	gameManager manager(msgToGraphics);
+										  // get message from graphics
 	string msgFromGraphics = p.getMessageFromGraphics();
+	
 
 	while (msgFromGraphics != "quit")
 	{
 		// should handle the string sent from graphics
 		// according the protocol. Ex: e2e4           (move e2 to e4)
 
+		std::string answer = std::to_string(manager.makeTurn(msgFromGraphics));
 		// YOUR CODE
-		strcpy_s(msgToGraphics, "YOUR CODE"); // msgToGraphics should contain the result of the operation
+		strcpy_s(msgToGraphics, answer.c_str()); // msgToGraphics should contain the result of the operation
 
 											  // return result to graphics		
 		p.sendMessageToGraphics(msgToGraphics);
