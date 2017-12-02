@@ -18,7 +18,7 @@ Position::~Position()
 {
 }
 
-int Position::translate()
+int Position::translate() const
 {
 	return (_letter - 'a') * SIDE_LEN + _number;
 }
@@ -29,9 +29,9 @@ Position& Position::operator=(const Position& other)
 
 	return *this;
 }
-bool Position::operator==(const Position& other)
+bool Position::operator==(const Position& other) const
 {
-	return _letter = other._letter && _number == other._number;
+	return translate() == other.translate();
 }
 
 char Position::getLetter() const
