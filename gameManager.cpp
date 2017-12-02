@@ -15,8 +15,29 @@ std::string gameManager::boardState()
 }
 int gameManager::makeTurn(std::string move)
 {
-	Position src(move[0], move[1]);
-	Position dst(move[0], move[1]);
+	Position* src;
+	Position* dst;
+	// Checking if the 2 positions exist on the board
+	try
+	{
+		src = new Position(move[0], int(move[1]));
+		dst = new Position(move[2], int(move[3]));
+	}
+	catch (std::invalid_argument invalid_index)
+	{
+		return 5;
+	}
+
+	if (src == dst)
+		return 7;
+
+	// Checking if the source position has a piece that belongs to the current player.
+	if (_curr &&  'A' < _board.getPiece(*src) < 'Z')
+		return 2;
+
+	if (_curr && !('a' < _board.getPiece(*dst) < 'z'))
+		return 3;
+
 }
 void gameManager::toggleCurrPlayer()
 {
