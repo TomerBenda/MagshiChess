@@ -1,12 +1,19 @@
 #pragma once
 #include "Piece.h"
 #include "Rook.h"
-
+#include "King.h"
+/*
+#include "Bishop.h"
+#include "Knight.h"
+#include "Pawn.h"
+#include "Queen.h"
+*/
 #include <string>
 #include <vector>
 #include <iostream>
 
 class Piece;
+
 class Board
 {
 public:
@@ -17,7 +24,7 @@ public:
 	void move(const Position& src, const Position& dst);
 	void createPieces();
 	std::string getMatrixStr() const;
-	char getPiece(const Position& pos) const;
+	char operator[](int index) const;
 
 private:
 	std::vector<Piece*> _pieces;

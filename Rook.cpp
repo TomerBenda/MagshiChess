@@ -1,6 +1,6 @@
 #include "Rook.h"
 
-Rook::Rook(Position pos, char type, Board board) : Piece(pos, type, board)
+Rook::Rook(Position pos, char type, Board* board) : Piece(pos, type, board)
 {
 }
 

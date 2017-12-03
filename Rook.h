@@ -1,10 +1,9 @@
 #pragma once
 #include "Piece.h"
-
-class Rook : public Piece
+class Rook: public Piece
 {
 public:
-	Rook(Position pos, char type, Board board);
+	Rook(Position pos, char type, Board* board);
 	~Rook();
 
 	bool checkMove(const Position& pos) const;

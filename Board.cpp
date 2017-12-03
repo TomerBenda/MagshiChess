@@ -30,7 +30,7 @@ void Board::move(const Position& src, const Position& dst)
 }
 void Board::createPieces()
 {
-	for (int i = 0; i < _matrixStr.size() - 1; i++)
+	for (unsigned int i = 0; i < _matrixStr.size(); i++)
 	{
 		switch (tolower(_matrixStr[i]))
 		{
@@ -38,10 +38,10 @@ void Board::createPieces()
 			//_pieces.push_back(new Queen(Position(i), _matrixStr[i], *this));
 			break;
 		case 'k':
-			//_pieces.push_back(new King(Position(i), _matrixStr[i], *this));
+			_pieces.push_back(new King(Position(i), _matrixStr[i], this));
 			break;
 		case 'r':
-			_pieces.push_back(new Rook(Position(i), _matrixStr[i], *this));
+			_pieces.push_back(new Rook(Position(i), _matrixStr[i], this));
 			break;
 		case 'n':
 			//_pieces.push_back(new Knight(Position(i), _matrixStr[i], *this));
@@ -63,7 +63,7 @@ std::string Board::getMatrixStr() const
 	return _matrixStr;
 }
 
-char Board::getPiece(const Position& pos) const
+char Board::operator[](int index) const
 {
-	return _matrixStr[pos.translate()];
+	return _matrixStr[index];
 }

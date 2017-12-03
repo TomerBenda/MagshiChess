@@ -1,8 +1,11 @@
 #pragma once
-class King
+#include "Piece.h"
+
+class King: public Piece
 {
 public:
-	King();
+	King(Position pos, char type, Board* board);
 	~King();
+	bool checkMove(const Position& pos) const;
 };
 
