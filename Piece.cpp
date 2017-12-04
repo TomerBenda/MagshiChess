@@ -1,6 +1,6 @@
 #include "Piece.h"
 
-Piece::Piece(Position pos, char type, Board board) : _index(pos), _type(type), _board(board)
+Piece::Piece(Position pos, char type, Board* board) : _index(pos), _type(type), _board(board)
 {
 }
 Piece::~Piece()
@@ -13,7 +13,7 @@ Position Piece::getPos() const
 }
 bool Piece::isWhite() const
 {
-	return 'A' < _type < 'Z';
+	return 'A' < _type && _type < 'Z';
 }
 char Piece::getType() const
 {

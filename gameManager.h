@@ -1,5 +1,7 @@
 #pragma once
 #include "Board.h"
+#include "Player.h"
+#include <vector>
 
 class gameManager
 {
@@ -15,5 +17,6 @@ public:
 private:
 	Board _board;
 	bool _curr;
+	//std::vector<Player> _players;
 };
 

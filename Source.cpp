@@ -6,6 +6,7 @@
 using namespace std;
 void main()
 {
+
 	srand(time_t(NULL));
 
 
