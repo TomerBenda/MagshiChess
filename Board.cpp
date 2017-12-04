@@ -7,6 +7,13 @@ Board::Board(const std::string& matrixStr) : _matrixStr(matrixStr)
 
 Board::~Board()
 {
+	for (int i = 0; i < SIDE_LEN; i++)
+	{
+		for (int j = 0; j < SIDE_LEN; j++)
+		{
+			delete _pieces[i][j];
+		}
+	}
 }
 
 void Board::printState() const
@@ -22,37 +29,48 @@ void Board::printState() const
 }
 void Board::move(const Position& src, const Position& dst)
 {
-	for (Piece* p : _pieces)
+	for (int i = 0; i < SIDE_LEN; i++)
 	{
-		if (p->getPos() == src)
-			p->move(dst);
+		for (int j = 0; j < SIDE_LEN; j++)
+		{
+			if (_pieces[i][j]->getPos() == src)
+				_pieces[i][j]->move(dst);
+		}
 	}
 }
 void Board::createPieces()
 {
-	for (int i = 0; i < _matrixStr.size() - 1; i++)
+	for (unsigned int i = 0; i < _matrixStr.size(); i++)
 	{
+		Position p(i);
 		switch (tolower(_matrixStr[i]))
 		{
 		case 'q':
-			//_pieces.push_back(new Queen(Position(i), _matrixStr[i], *this));
+			//_pieces[p.getLetter() - 'a'][p.getNumber()](new Queen(p, _matrixStr[i], this));
 			break;
 		case 'k':
-			//_pieces.push_back(new King(Position(i), _matrixStr[i], *this));
+			King* newKing = new King(p, _matrixStr[i], this);
+			_pieces[p.getLetter() - 'a'][p.getNumber()] = newKing;
+
+			if ( _matrixStr[i] = 'k')
+				_kingB = newKing;
+			else
+				_kingW = newKing;
 			break;
 		case 'r':
-			_pieces.push_back(new Rook(Position(i), _matrixStr[i], *this));
+			_pieces[p.getLetter() - 'a'][p.getNumber()] = new Rook(p, _matrixStr[i], this);
 			break;
 		case 'n':
-			//_pieces.push_back(new Knight(Position(i), _matrixStr[i], *this));
+			//_pieces[p.getLetter() - 'a'][p.getNumber()] = new Knight(p, _matrixStr[i], this);
 			break;
 		case 'p':
-			//_pieces.push_back(new Pawn(Position(i), _matrixStr[i], *this));
+			//_pieces[p.getLetter() - 'a'][p.getNumber()] = new Pawn(p, _matrixStr[i], this);
 			break;
 		case 'b':
-			//_pieces.push_back(new Bishop(Position(i), _matrixStr[i], *this));
+			//_pieces[p.getLetter() - 'a'][p.getNumber()] = new Bishop(p, _matrixStr[i], this);
 			break;
 		default:
+			_pieces[p.getLetter() - 'a'][p.getNumber()] = NULL;
 			break;
 		}
 	}
@@ -63,7 +81,8 @@ std::string Board::getMatrixStr() const
 	return _matrixStr;
 }
 
-char Board::getPiece(const Position& pos) const
+Piece* Board::operator[](int index) const
 {
-	return _matrixStr[pos.translate()];
+	Position tmp(index);
+	return _pieces[tmp.getLetter() - 'a'][tmp.getNumber()];
 }

@@ -1,6 +1,6 @@
 #pragma once
 #include <stdexcept>
-const int SIDE_LEN = 8;
+#define SIDE_LEN 8
 
 class Position
 {

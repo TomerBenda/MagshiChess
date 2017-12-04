@@ -1,12 +1,12 @@
 #pragma once
 #include "Position.h"
-#include "Board.h"
 
 class Board;
+
 class Piece
 {
 public:
-	Piece(Position pos, char type, Board board);
+	Piece(Position pos, char type, Board* board);
 	virtual ~Piece();
 	virtual bool checkMove(const Position& pos) const = 0;
 	Position getPos() const;
@@ -17,7 +17,7 @@ public:
 
 protected:
 	Position _index;
-	Board _board;
+	Board* _board;
 	char _type;
 };
 
