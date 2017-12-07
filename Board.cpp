@@ -42,6 +42,7 @@ void Board::createPieces()
 {
 	for (unsigned int i = 0; i < _matrixStr.size(); i++)
 	{
+		King* newKing;
 		Position p(i);
 		switch (tolower(_matrixStr[i]))
 		{
@@ -49,7 +50,7 @@ void Board::createPieces()
 			//_pieces[p.getLetter() - 'a'][p.getNumber()](new Queen(p, _matrixStr[i], this));
 			break;
 		case 'k':
-			King* newKing = new King(p, _matrixStr[i], this);
+			newKing = new King(p, _matrixStr[i], this);
 			_pieces[p.getLetter() - 'a'][p.getNumber()] = newKing;
 
 			if ( _matrixStr[i] = 'k')
@@ -85,4 +86,12 @@ Piece* Board::operator[](int index) const
 {
 	Position tmp(index);
 	return _pieces[tmp.getLetter() - 'a'][tmp.getNumber()];
+}
+
+King* Board::getKing(char c) const
+{
+	if ('a' < c && c < 'z')
+		return _kingB;
+	else
+		return _kingW;
 }

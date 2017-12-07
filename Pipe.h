@@ -1,4 +1,3 @@
-#pragma once
 /****************************** Module Header ******************************\
 * Module Name:	CppNamedPipeClient.cpp
 * Project:		CppNamedPipeClient
@@ -32,6 +31,9 @@
 \***************************************************************************/
 
 #pragma once
+#undef _UNICODE
+#undef UNICODE
+
 #pragma region Includes
 #include "stdafx.h"
 

@@ -27,3 +27,18 @@ void Piece::move(const Position& pos)
 {
 	_index = pos;
 }
+
+bool Piece::checkCheck(const Position& pos) const
+{
+	for (int i = 0; i < SIDE_LEN; i++)
+	{
+		for (int j = 0; j < SIDE_LEN; j++)
+		{
+			Position a(i, j);
+			Piece* curr = (*_board)[a.translate()];
+			if (curr && curr->getType() != _type && curr->checkMove(pos))
+				return true;
+		}
+	}
+	return false;
+}

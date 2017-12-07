@@ -17,6 +17,6 @@ public:
 private:
 	Board _board;
 	bool _curr;
-	//std::vector<Player> _players;
+	std::vector<Player> _players;
 };
 

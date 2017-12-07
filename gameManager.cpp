@@ -1,8 +1,16 @@
 #include "gameManager.h"
 const int PLAYER_INDEX = 64;
+const int NUM_PLAYERS = 2;
 
 gameManager::gameManager(const std::string& str) : _board(str.substr(0, 64)), _curr(str[PLAYER_INDEX] == 0)
 {
+	std::string tmp;
+
+	for (int i = 0; i < NUM_PLAYERS; i++)
+	{
+		std::cin >> tmp;
+		_players.push_back(Player(tmp));
+	}
 }
 
 gameManager::~gameManager()
@@ -42,7 +50,17 @@ int gameManager::makeTurn(std::string move)
 	// If move is legal, eat opponent's piece if there is one.
 	
 	// King needs to run tests on other pieces to check for Check.
+	if (tolower(_board[src->translate()]->getType()) == 'k')
+		if (_board[src->translate()]->checkCheck(*src))
+			return 6;
+		else
+			return 0;
+	else
+	{
 
+	}
+
+	//Make Le move
 	return 0;
 
 }

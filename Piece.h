@@ -1,5 +1,6 @@
 #pragma once
 #include "Position.h"
+#include "Board.h"
 
 class Board;
 
@@ -14,6 +15,7 @@ public:
 	char getType() const;
 	bool isEnemy(const Piece& other) const;
 	void move(const Position& pos);
+	bool checkCheck(const Position& pos) const;
 
 protected:
 	Position _index;

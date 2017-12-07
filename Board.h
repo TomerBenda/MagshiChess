@@ -25,6 +25,7 @@ public:
 	void createPieces();
 	std::string getMatrixStr() const;
 	Piece* operator[](int index) const;
+	King* getKing(char c) const;
 
 private:
 	Piece* _pieces[SIDE_LEN][SIDE_LEN];
