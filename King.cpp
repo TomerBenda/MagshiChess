@@ -14,15 +14,16 @@ bool King::checkMove(const Position& pos) const
 	return (abs(_index.getLetter() - pos.getLetter()) <= 1) && (abs(_index.getNumber() - pos.getNumber()) <= 1);
 }
 
-bool King::checkCheck() const
+bool King::checkCheck(Position pos) const
 {
 	for (int i = 0; i < SIDE_LEN; i++)
 	{
 		for (int j = 0; j < SIDE_LEN; j++)
 		{
-			Position a(i, j);
+			Position a('a' + j, i);
 			Piece* curr = (*_board)[a.translate()];
-			if (curr && curr->getType() != _type && curr->checkMove(_index))
+			// Checking if there exists a piece at the current index, which is not the King itself, and can move to the king's location.
+			if (curr && curr->getType() != _type && curr->checkMove(pos))
 				return true;
 		}
 	}
