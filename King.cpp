@@ -20,10 +20,10 @@ bool King::checkCheck(Position pos) const
 	{
 		for (int j = 0; j < SIDE_LEN; j++)
 		{
-			Position a('a' + j, i);
-			Piece* curr = (*_board)[a.translate()];
+			Position currPos('a' + j, i);
+			Piece* curr = (*_board)[currPos.translate()];
 			// Checking if there exists a piece at the current index, which is not the King itself, and can move to the king's location.
-			if (curr && curr->isWhite() != this->isWhite() && curr->checkMove(pos))
+			if (curr && isEnemy(*curr) && !(pos==currPos) && curr->checkMove(pos))
 				return true;
 		}
 	}
