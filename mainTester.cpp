@@ -3,7 +3,7 @@
 #include "gameManager.h"
 #include "Board.h"
 #include "Piece.h"
-int main()
+int testmain()
 {
 	std::string start = "r######rr########k##########K###########################R######R1";
 	gameManager m(start);

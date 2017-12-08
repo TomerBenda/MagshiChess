@@ -19,7 +19,7 @@ bool Rook::checkMove(const Position& pos) const
 		else
 			moveBy = 1;
 
-		for (unsigned int i = _index.getLetter() - 'a' + moveBy; i != pos.getLetter() - 'a'; i += moveBy)
+		for (unsigned int i = _index.getLetter() - 'a' + moveBy; i != pos.getLetter() - 'a' + moveBy; i += moveBy)
 			if ((*_board)[Position('a' + i, _index.getNumber()).translate()] != nullptr)
 				return false;
 		return true;
@@ -31,7 +31,7 @@ bool Rook::checkMove(const Position& pos) const
 		else
 			moveBy = -1;
 
-		for (unsigned int i = _index.getNumber() + moveBy; i != pos.getNumber() - 1; i += moveBy)
+		for (unsigned int i = _index.getNumber() + moveBy; i != pos.getNumber() +moveBy; i += moveBy)
 			if ((*_board)[Position(_index.getLetter(), i).translate()] != nullptr)
 				return false;
 		return true;

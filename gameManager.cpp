@@ -20,8 +20,8 @@ int gameManager::makeTurn(std::string move)
 	// Checking if the 2 positions exist on the board
 	try
 	{
-		src = new Position(move[0], move[1] - '0' - 1);
-		dst = new Position(move[2], move[3] - '0' - 1);
+		src = new Position(move[0], move[1] - '0');
+		dst = new Position(move[2], move[3] - '0');
 	}
 	catch (std::invalid_argument invalid_index)
 	{
