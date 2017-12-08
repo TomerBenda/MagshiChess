@@ -1,18 +1,22 @@
 #pragma once
 #include <iostream>
 #include "Position.h"
+#include "King.h"
+
+class King;
 
 class Player
 {
 public:
-	Player(const std::string& name);
+	Player(King* playerKing, const std::string& name);
 	~Player();
-	Position getKing() const;
+	King* getKing() const;
 	void moveKing(Position dst);
-
+	void setThreatened(const bool status);
+	bool getThreatened();
 private:
 	std::string _name;
-	Position _king;
+	King* _king;
 	bool _isThreatened;
 };
 
