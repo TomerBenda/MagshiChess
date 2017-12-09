@@ -54,7 +54,6 @@ int gameManager::makeTurn(std::string move)
 		{
 			currentPlayer->setThreatened(false);
 			_board.move(*src, *dst);
-			_board.updateMatrixStr(src->translate(), dst->translate());
 		}
 		else
 			return 6;
@@ -66,7 +65,6 @@ int gameManager::makeTurn(std::string move)
 
 		// The move is legal, now checking if the piece to move causes Check on the opponent's king
 		_board.move(*src, *dst);
-		_board.updateMatrixStr(src->translate(), dst->translate());
 		if (!(opponentPlayer->getThreatened()) && opponentPlayer->getKing()->checkCheck(opponentPlayer->getKing()->getPos()))
 		{
 			opponentPlayer->setThreatened(true);

@@ -40,15 +40,15 @@ void Board::move(const Position& src, const Position& dst)
 			if (_pieces[i][j] != nullptr && _pieces[i][j]->getPos() == src)
 			{
 				_pieces[i][j]->move(dst);
-				if (_pieces[dst.getLetter() - 'a'][dst.getNumber()-1] != nullptr)
-					delete _pieces[dst.getLetter() - 'a'][dst.getNumber()];
-				_pieces[dst.getLetter() - 'a'][dst.getNumber()-1] = _pieces[i][j];
+				if (_pieces[dst.getLetter() - 'a'][dst.getNumber() - 1] != nullptr)
+					delete _pieces[dst.getLetter() - 'a'][dst.getNumber() - 1];
+				_pieces[dst.getLetter() - 'a'][dst.getNumber() - 1] = _pieces[i][j];
 				_pieces[i][j] = nullptr;
 				moved = true;
 			}
-				
 		}
 	}
+	updateMatrixStr(src.translate(), dst.translate());
 }
 void Board::createPieces()
 {
@@ -80,7 +80,7 @@ void Board::createPieces()
 			//_pieces[p.getLetter() - 'a'][p.getNumber() - 1] = new Pawn(p, _matrixStr[i], this);
 			break;
 		case 'b':
-			//_pieces[p.getLetter() - 'a'][p.getNumber() - 1] = new Bishop(p, _matrixStr[i], this);
+			_pieces[p.getLetter() - 'a'][p.getNumber() - 1] = new Bishop(p, _matrixStr[i], this);
 			break;
 		default:
 			_pieces[p.getLetter() - 'a'][p.getNumber() - 1] = nullptr;
