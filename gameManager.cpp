@@ -31,12 +31,12 @@ int gameManager::makeTurn(std::string move)
 	if (src == dst)
 		return 7;
 
-	Piece* toMove = _board[src->translate()];
+	Piece* toMove = _board[*src];
 	Player* currentPlayer = _board.getPlayer(_curr);
 	Player* opponentPlayer = _board.getPlayer(!_curr);
 
 	// Checking if the source position is null or has a piece that belongs to the current player.
-	if (toMove == nullptr || _curr != toMove->isWhite())
+	if (toMove == nullptr || _curr !=  toMove->isWhite())
 		return 2;
 	// Checking if the destination has piece, which belongs to the current player.
 	if (_board[dst->translate()] != nullptr && !(toMove->isEnemy(*_board[dst->translate()])))
@@ -45,18 +45,21 @@ int gameManager::makeTurn(std::string move)
 	// First, if the king is the piece to be moved - It cannot move to a location that will cause Check on itself.
 	if (tolower(toMove->getType()) == 'k')
 	{
-		bool checkResult = currentPlayer->getKing()->checkCheck(*dst);
 		// The king cannot cause Check on the other king, since it would put him in attack range from the opponent's king.
 		if (!toMove->checkMove(*dst))
 			return 6;
-		// If the move does not cause Check, this means the king is not threatened.
+		// Attempting to move the king. If move causes check, reverse the move.
+		_board.move(*src, *dst);
+		bool checkResult = currentPlayer->getKing()->checkCheck(*dst);
 		if (!checkResult)
 		{
 			currentPlayer->setThreatened(false);
-			_board.move(*src, *dst);
 		}
 		else
+		{
+			_board.move(*dst, *src);
 			return 6;
+		}
 	}
 	else
 	{
@@ -65,12 +68,13 @@ int gameManager::makeTurn(std::string move)
 
 		// The move is legal, now checking if the piece to move causes Check on the opponent's king
 		_board.move(*src, *dst);
-		if (!(opponentPlayer->getThreatened()) && opponentPlayer->getKing()->checkCheck(opponentPlayer->getKing()->getPos()))
+		if (!(opponentPlayer->getThreatened()) && 
+			opponentPlayer->getKing()->checkCheck(opponentPlayer->getKing()->getPos()))
 		{
 			opponentPlayer->setThreatened(true);
 			toggleCurrPlayer(); // The function will return 1, meaning the turn was legal.
 			return 1;
-		}
+		}	
 	}
 	// If the code reached this point, the move is legal and does not cause Check.
 	toggleCurrPlayer();

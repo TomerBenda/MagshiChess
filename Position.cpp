@@ -42,20 +42,8 @@ int Position::getNumber() const
 {
 	return _number;
 }
+
 int Position::getIntLetter() const
 {
 	return _letter - 'a';
 }
-
-/* A   B   C   D   E   F   G   H
-8  0   1   2   3   4   5   6   7
-7  8   9   10  11  12  13  14  15
-6  16  17 
-5
-4
-3
-2
-1
-
-
-*/

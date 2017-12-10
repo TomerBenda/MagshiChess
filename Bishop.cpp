@@ -15,7 +15,7 @@ bool Bishop::checkMove(const Position& pos) const
 	int colMove, rowMove;
 	if (std::abs(_index.getLetter() - pos.getLetter()) == std::abs(_index.getNumber() - pos.getNumber()))
 	{
-		// If the bishop moves left and down
+		// Checking which direction the bishop moves to
 		if (_index.getLetter() > pos.getLetter())
 			colMove = -1;
 		else
@@ -35,3 +35,4 @@ bool Bishop::checkMove(const Position& pos) const
 	}
 	return false;
 }
+

@@ -15,7 +15,6 @@ Board::~Board()
 			delete _pieces[i][j];
 		}
 	}
-
 	delete _black;
 	delete _white;
 }
