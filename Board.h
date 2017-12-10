@@ -3,8 +3,8 @@
 #include "Rook.h"
 #include "King.h"
 #include "Bishop.h"
-#include "Pawn.h"
 #include "Knight.h"
+#include "Pawn.h"
 #include "Queen.h"
 
 #include <string>

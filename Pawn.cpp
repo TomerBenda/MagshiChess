@@ -1,8 +1,11 @@
 #include "Pawn.h"
 
+
+
 Pawn::Pawn(Position pos, char type, Board* board) : Piece(pos, type, board)
 {
 }
+
 
 Pawn::~Pawn()
 {
@@ -48,7 +51,8 @@ bool Pawn::checkMove(const Position& pos) const
 	return isValidMove;
 }
 
-bool Pawn::isAtStartPosition() const{
-	return (isWhite() && _index.getNumber() == 2) 
-		|| (!isWhite() && _index.getNumber() == 7);
+bool Pawn::isAtStartPosition() const 
+{
+	return (isWhite() && _index.getNumber() == 2)
+		 || (!isWhite() && _index.getNumber() == 7);
 }

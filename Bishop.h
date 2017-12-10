@@ -2,7 +2,7 @@
 #include "Piece.h"
 #include "Board.h"
 #include <cmath>
-class Bishop : public Piece
+class Bishop: public Piece
 {
 public:
 	Bishop(Position pos, char type, Board* board);
@@ -10,3 +10,4 @@ public:
 	bool checkMove(const Position& pos) const;
 
 };
+
