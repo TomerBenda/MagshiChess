@@ -1,6 +1,6 @@
 #include "Player.h"
 
-Player::Player(const std::string& name) : _king(0), _name(name), _isThreatened(false)
+Player::Player(King* playerKing, const std::string& name) : _king(playerKing), _name(name), _isThreatened(false)
 {
 }
 Player::~Player()
@@ -8,11 +8,20 @@ Player::~Player()
 
 }
 
-Position Player::getKing() const
+King* Player::getKing() const
 {
 	return _king;
 }
 void Player::moveKing(Position dst)
 {
-	_king = dst;
+	_king->move(dst);
+}
+
+void Player::setThreatened(const bool status)
+{
+	_isThreatened = status;
+}
+bool Player::getThreatened() 
+{
+	return _isThreatened;
 }

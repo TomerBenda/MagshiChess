@@ -2,17 +2,17 @@
 #include "Piece.h"
 #include "Rook.h"
 #include "King.h"
-/*
 #include "Bishop.h"
-#include "Knight.h"
 #include "Pawn.h"
+#include "Knight.h"
 #include "Queen.h"
-*/
+
 #include <string>
 #include <iostream>
+#include "Player.h"
 
 class Piece;
-class King;
+class Player;
 
 class Board
 {
@@ -25,12 +25,15 @@ public:
 	void createPieces();
 	std::string getMatrixStr() const;
 	Piece* operator[](int index) const;
+	Piece* operator[](Position pos) const;
+	Player* getPlayer(bool player) const;
+	void updateMatrixStr(int oldIndex, int newIndex);
+	void promote(Piece* promotion, const Position& old);
 
 private:
 	Piece* _pieces[SIDE_LEN][SIDE_LEN];
 	std::string _matrixStr;
-
-	King* _kingW;
-	King* _kingB;
+	Player* _white;
+	Player* _black;
 };
 

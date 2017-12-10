@@ -13,6 +13,7 @@ public:
 	bool operator==(const Position& other) const;
 	char getLetter() const;
 	int getNumber() const;
+	int getIntLetter() const;
 
 private:
 	char _letter;
