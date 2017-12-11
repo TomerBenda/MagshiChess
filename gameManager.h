@@ -12,11 +12,11 @@ public:
 	std::string boardState();
 	int makeTurn(std::string move);
 	void toggleCurrPlayer();
-	void logMessage(std::string msg);
+	void printState();
+
 
 private:
 	Board _board;
 	bool _curr;
-	//std::vector<Player> _players;
 };
 

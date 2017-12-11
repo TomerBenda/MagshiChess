@@ -1,8 +1,13 @@
 #pragma once
-class Bishop
+#include "Piece.h"
+#include "Board.h"
+#include <cmath>
+class Bishop: public Piece
 {
 public:
-	Bishop();
+	Bishop(Position pos, char type, Board* board);
 	~Bishop();
+	bool checkMove(const Position& pos) const;
+
 };
 

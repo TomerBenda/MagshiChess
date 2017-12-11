@@ -3,7 +3,7 @@
 
 Position::Position(char letter, int number)
 {
-	if ('a' > letter || 'h' <= letter || number > 8 || number <= 0)
+	if ('a' > letter || 'h' < letter || number > 8 || number <= 0)
 		throw std::invalid_argument("Error: Position index out of range");
 
 		_letter = letter;
@@ -11,8 +11,8 @@ Position::Position(char letter, int number)
 }
 Position::Position(int index)
 {
-	_number = index % SIDE_LEN;
-	_letter = char('a' + index / 8);
+	_number = SIDE_LEN - (index / SIDE_LEN) -1; 
+	_letter = char('a' + index % SIDE_LEN);
 }
 Position::~Position()
 {
@@ -20,7 +20,7 @@ Position::~Position()
 
 int Position::translate() const
 {
-	return (_letter - 'a') * SIDE_LEN + _number;
+	return (SIDE_LEN - _number - 1) * SIDE_LEN + (_letter - 'a');
 }
 Position& Position::operator=(const Position& other)
 {
@@ -41,4 +41,9 @@ char Position::getLetter() const
 int Position::getNumber() const
 {
 	return _number;
+}
+
+int Position::getIntLetter() const
+{
+	return _letter - 'a';
 }
