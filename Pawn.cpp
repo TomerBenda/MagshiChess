@@ -40,12 +40,11 @@ bool Pawn::checkMove(const Position& pos) const
 
 	//if the pawn reaches the other side of the board, it is promoted(bonus)
 	bool isPromotion = (isValidMove &&
-		pos.getNumber() == (SIDE_LEN - 1) * isWhite() + 1);
+		pos.getNumber() == (SIDE_LEN - 1) * isWhite());
 	if (isPromotion)
 	{
 		Piece* promotion = new Queen(pos, isWhite() ? 'Q' : 'q', _board);
 		(*_board).promote(promotion, _index);
-		(*_board).printState();
 	}
 
 	return isValidMove;
@@ -53,6 +52,6 @@ bool Pawn::checkMove(const Position& pos) const
 
 bool Pawn::isAtStartPosition() const 
 {
-	return (isWhite() && _index.getNumber() == 2)
-		 || (!isWhite() && _index.getNumber() == 7);
+	return (isWhite() && _index.getNumber() == 1)
+		 || (!isWhite() && _index.getNumber() == 6);
 }
