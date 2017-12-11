@@ -27,3 +27,4 @@ void Piece::move(const Position& pos)
 {
 	_index = pos;
 }
+
