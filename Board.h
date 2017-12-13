@@ -28,6 +28,8 @@ public:
 	Piece* operator[](Position pos) const;
 	Player* getPlayer(bool player) const;
 	void updateMatrixStr(int oldIndex, int newIndex);
+	Piece* getPiece(const Position& src);
+	void changePiece(Piece* newPiece, const Position& pos);
 	void promote(Piece* promotion, const Position& old);
 
 private:

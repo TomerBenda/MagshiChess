@@ -49,16 +49,17 @@ int gameManager::makeTurn(std::string move)
 		if (!toMove->checkMove(*dst))
 			return 6;
 		// Attempting to move the king. If move causes check, reverse the move.
-		toMove->move(*dst);
+		Piece* tmp = _board.extractPiece(*dst);
+		_board.move(*src, *dst);
 		bool checkResult = currentPlayer->getKing()->checkCheck(*dst);
 		if (!checkResult)
 		{
-			_board.move(*src, *dst);
 			currentPlayer->setThreatened(false);
 		}
 		else
 		{
-			toMove->move(*src);
+			_board.move(*dst, *src);
+			_board.changePiece(tmp, *dst);
 			return 6;
 		}
 	}

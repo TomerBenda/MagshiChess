@@ -13,22 +13,18 @@ Bishop::~Bishop()
 bool Bishop::checkMove(const Position& pos) const
 {
 	int colMove, rowMove;
-	if (std::abs(_index.getLetter() - pos.getLetter()) == std::abs(_index.getNumber() - pos.getNumber()))
+	int letterDiff = _index.getLetter() - pos.getLetter();
+	int numDiff = _index.getNumber() - pos.getNumber();
+	if (std::abs(letterDiff) == std::abs(numDiff))
 	{
 		// Checking which direction the bishop moves to
-		if (_index.getLetter() > pos.getLetter())
-			colMove = -1;
-		else
-			colMove = 1;
-		if (_index.getNumber() > pos.getNumber())
-			rowMove = -1;
-		else
-			rowMove = 1;
+		letterDiff > 0 ? colMove = -1 : colMove = 1;
+		numDiff > 0 ? rowMove = -1 : rowMove = 1;
 
-		for (int i = 1; i < std::abs(_index.getLetter() - pos.getLetter()); i++)
+		for (int i = 1; i < std::abs(letterDiff); i++)
 		{
-			Position curr(_index.getLetter() + colMove*i, _index.getNumber() + rowMove*i);
-			if ((*_board)[curr.translate()] != nullptr && !(curr == pos))
+			Position curr(_index.getLetter() + colMove*i, _index.getNumber() + 1 + rowMove*i);
+			if ((*_board)[curr] != nullptr && !(curr == pos))
 				return false;
 		}
 		return true;
